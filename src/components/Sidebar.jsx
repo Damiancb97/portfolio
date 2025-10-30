@@ -48,7 +48,7 @@ export default function Sidebar() {
 
       {/* Iconos de redes */}
       <div className="flex gap-4 mt-4 text-gray-700">
-        <a href="#" aria-label="LinkedIn" title="LinkedIn" className="hover:text-indigo-600">
+        <a href="https://www.linkedin.com/in/damiancb" aria-label="LinkedIn" title="LinkedIn" className="hover:text-indigo-600">
           <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
             <path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4.96v14H.5V8zM9 8h4.76v2.06h.07C14.7 8.94 16.12 8 18.33 8 22.5 8 23.5 10.77 23.5 14.7V22H18.5v-6.3c0-1.5-.03-3.42-2.08-3.42-2.08 0-2.4 1.63-2.4 3.31V22H9V8z" />
           </svg>
