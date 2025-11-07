@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-
+// modify name
 const base =
   'py-2 px-4 rounded-md transition bg-indigo-500 text-white hover:bg-indigo-600';
 const active = 'py-2 px-4 bg-indigo-600 text-yellow-300 rounded-md';
