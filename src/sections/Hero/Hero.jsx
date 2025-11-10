@@ -58,7 +58,7 @@ function Hero() {
           En desarrollo: integrando IA en la Home
         </span>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white-900">
           ¡Hola! 👋 Soy <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Damián</span>
         </h1>
 

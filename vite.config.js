@@ -4,5 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/',                 // For start the app on apache2
   plugins: [react(), tailwindcss()],
 })
