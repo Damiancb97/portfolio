@@ -2,7 +2,7 @@ export default function About() {
   return (
     <section className="bg-card p-8 rounded-2xl shadow-soft mb-6">
       <h1 className="text-3xl font-bold mb-4 text-accent">About Me</h1>
-      <p className="text-gray-300 leading-relaxed">
+      <p className="text-black-300 leading-relaxed">
 Soy un desarrollador Full Stack con especial interés en el backend, actualmente enfocado en Java Spring Boot. Me apasiona crear aplicaciones web que combinen buen rendimiento, arquitectura limpia y una experiencia de usuario fluida.
 
 Comencé en el desarrollo web trabajando tanto en el frontend (HTML, CSS, JavaScript, React, Vue.js) como en el backend, lo que me ha dado una visión completa del ciclo de vida de una aplicación. Actualmente disfruto profundizando en la lógica de negocio, las APIs y la integración con bases de datos, buscando siempre escribir código claro, escalable y mantenible.
