@@ -1,0 +1,11 @@
+{
+  "nombre": "Damián Costa Blanco",
+  "tecnologias": ["React", "Vite", "TailwindCSS", "Node.js", "Docker", "Linux"],
+  "experiencia": "Desarrollador web con interés en IA y despliegues propios",
+  "sobre_mi": "Soy una persona autodidacta, apasionada por construir proyectos reales...",
+  "proyectos_destacados": [
+    "Portfolio personal con IA",
+    "Aplicación X",
+    "Herramienta Y"
+  ]
+}
