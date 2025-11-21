@@ -13,19 +13,11 @@ app.use(cors({
 }));
 
 
-const LMSTUDIO_URL = process.env.LMSTUDIO_URL;
-const LMSTUDIO_MODEL = process.env.LMSTUDIO_MODEL;
-const PORT = process.env.PORT || 4000;
-
-if (!LMSTUDIO_URL) {
-  console.warn("⚠️  Advertencia: LMSTUDIO_URL no está definida en el archivo .env");
-}
-if (!LMSTUDIO_MODEL) {
-  console.warn("⚠️  Advertencia: LMSTUDIO_MODEL no está definida en el archivo .env");
-}
+const LMSTUDIO_URL =
+  process.env.LMSTUDIO_URL || "http://127.0.0.1:1234/v1/chat/completions";
   
 
-app.post("/chat", async (req, res) => {
+app.post("/api/chat", async (req, res) => {
   console.log("POST /api/chat called with body:", req.body); // <-- logging
 
   try {
@@ -39,7 +31,7 @@ app.post("/chat", async (req, res) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: LMSTUDIO_MODEL,
+        model: "microsoft/phi-4-mini-reasoning",
         messages: [
           {
             role: "system",
@@ -69,6 +61,5 @@ ${JSON.stringify(personalData, null, 2)}
   }
 });
 
-app.listen(PORT, "0.0.0.0", () =>
-  console.log("AI server running on port", PORT)
-);
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, '0.0.0.0', () => console.log("AI server running on port", PORT));
