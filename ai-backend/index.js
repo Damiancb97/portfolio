@@ -8,30 +8,58 @@ import personalData from "./personal-data.json" assert { type: "json" };
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: "https://damiancb.com",
-}));
 
+app.use(
+  cors({
+    origin: "https://damiancb.com",
+  })
+);
 
-const LMSTUDIO_URL =
-  process.env.LMSTUDIO_URL || "http://127.0.0.1:1234/v1/chat/completions";
-  
+/* ────────────────────────────────────────────────
+   VALIDACIÓN DE VARIABLES DE ENTORNO
+────────────────────────────────────────────────── */
+
+const REQUIRED_ENV = ["MODEL_NAME", "LMSTUDIO_URL"];
+
+const missing = REQUIRED_ENV.filter((key) => !process.env[key]);
+if (missing.length > 0) {
+  console.error("❌ ERROR: Faltan variables en el .env:");
+  missing.forEach((v) => console.error(" -", v));
+  console.error("El servidor no puede iniciarse sin estas variables.");
+  process.exit(1);
+}
+
+const MODEL_NAME = process.env.MODEL_NAME;
+const LMSTUDIO_URL = process.env.LMSTUDIO_URL;
+const PORT = process.env.PORT || 4000;
+
+console.log("🔧 Configuración cargada:");
+console.log("MODEL_NAME:", MODEL_NAME);
+console.log("LMSTUDIO_URL:", LMSTUDIO_URL);
+console.log("PORT:", PORT);
+
+/* ────────────────────────────────────────────────
+   ENDPOINT PRINCIPAL
+────────────────────────────────────────────────── */
 
 app.post("/api/chat", async (req, res) => {
-  console.log("POST /api/chat called with body:", req.body); // <-- logging
+  console.log("📩 POST /api/chat body:", req.body);
 
   try {
     const { message } = req.body;
 
-    if (!message) {
-      return res.status(400).json({ reply: "No se envió ningún mensaje." });
+    if (!message || typeof message !== "string") {
+      return res.status(400).json({
+        reply: "Debes enviar un mensaje válido en el campo 'message'.",
+      });
     }
 
+    // Llamada a LM Studio
     const response = await fetch(LMSTUDIO_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "microsoft/phi-4-mini-reasoning",
+        model: MODEL_NAME,
         messages: [
           {
             role: "system",
@@ -50,16 +78,52 @@ ${JSON.stringify(personalData, null, 2)}
       }),
     });
 
-    const json = await response.json();
-    console.log("LM Studio response:", json); // <-- logging de la respuesta
+    // Si LM Studio responde con error (500, 404, etc.)
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("❌ LM Studio devolvió un error:");
+      console.error(errorText);
 
-    const aiReply = json?.choices?.[0]?.message?.content || "No hay respuesta del modelo";
+      return res.status(500).json({
+        reply: "La IA devolvió un error.",
+        details: errorText,
+      });
+    }
+
+    // Asegurar JSON válido
+    let data;
+    const raw = await response.text();
+
+    try {
+      data = JSON.parse(raw);
+    } catch (e) {
+      console.error("❌ LM Studio devolvió algo que NO es JSON:");
+      console.error(raw);
+
+      return res.status(500).json({
+        reply: "La IA no devolvió un JSON válido.",
+        raw,
+      });
+    }
+
+    const aiReply =
+      data?.choices?.[0]?.message?.content ||
+      "La IA no envió una respuesta comprendida.";
+
     res.json({ reply: aiReply });
   } catch (err) {
-    console.error("Error connecting to LM Studio:", err);
-    res.status(500).json({ reply: "Error: no se pudo conectar con la IA." });
+    console.error("🔥 Error interno:", err);
+    res.status(500).json({
+      reply: "Error interno del servidor.",
+      error: err.message,
+    });
   }
 });
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, '0.0.0.0', () => console.log("AI server running on port", PORT));
+/* ────────────────────────────────────────────────
+   INICIO DEL SERVIDOR
+────────────────────────────────────────────────── */
+
+app.listen(PORT, "0.0.0.0", () =>
+  console.log(`🚀 Servidor de IA corriendo en el puerto ${PORT}`)
+);
