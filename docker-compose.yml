@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./ai-backend
+    container_name: portfolio_api
+    restart: unless-stopped
+    env_file:
+      - ./ai-backend/.env
+    expose:
+      - "4000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  web:
+    build: .
+    container_name: portfolio_web
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "8085:80"
