@@ -1,42 +1,52 @@
-// ...existing code...
+import { useLang } from '../../context/LangContext';
+import { t } from '../../translations';
+
+const groupColors = [
+  "bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300",
+  "bg-violet-100 dark:bg-violet-900/40 text-violet-800 dark:text-violet-300",
+  "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300",
+  "bg-orange-100 dark:bg-orange-900/40 text-orange-800 dark:text-orange-300",
+]
+
 function Skills() {
+  const { lang } = useLang()
+  const tr = t[lang].skills
+
   return (
     <section id="skills" className="">
       <div className="w-full max-w-none px-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">Skills</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">{tr.title}</h2>
 
-        {/* Row: Technical skills */}
-        <div className="mb-8">
-          <h3 className="text-xl font-semibold mb-3 text-black">Technical Skills</h3>
-          <ul className="grid gap-3 grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">Java</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">Spring Boot</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">React</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">JavaScript</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">TypeScript</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">Node.js</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">Python</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">Django</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">SQL</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">Git</li>
-            <li className="px-4 py-2 bg-gray-50 rounded-full border border-gray-200 text-black">Tailwind CSS</li>
-          </ul>op
+        <div className="flex flex-col gap-6 mb-10">
+          {tr.groups.map(({ category, skills }, i) => (
+            <div key={category}>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
+                {category}
+              </h3>
+              <ul className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <li key={skill} className={`px-3 py-1.5 rounded-full text-sm font-medium ${groupColors[i]}`}>
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        {/* Row: Soft skills */}
         <div>
-          <h3 className="text-xl font-semibold mb-3 text-black">Soft Skills</h3>
-          <ul className="list-disc pl-6 text-black space-y-2">
-            <li>Teamwork and effective collaboration.</li>
-            <li>Ability for organization and time management.</li>
-            <li>Problem-solver, focused on practical and efficient solutions.</li>
-            <li>Adaptable to change and quick to learn new technologies.</li>
-            <li>Self-taught, constantly seeking learning and improvement.</li>
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">
+            {tr.softTitle}
+          </h3>
+          <ul className="list-disc pl-6 text-gray-600 dark:text-gray-300 space-y-1.5 text-sm">
+            {tr.soft.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
       </div>
     </section>
   )
 }
-// ...existing code...
+
 export default Skills
