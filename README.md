@@ -1,16 +1,55 @@
-# React + Vite
+# Portfolio — Damián Costa Blanco
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sitio web de portfolio personal con chat de IA integrado, desplegado en [damiancb.com](https://damiancb.com).
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Frontend**
+- React 19 + React Router 7
+- Vite 7
+- Tailwind CSS 4
 
-## React Compiler
+**Backend** (`ai-backend/`)
+- Node.js + Express 5
+- LM Studio (modelo local `liquid/lfm2-1.2b`)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Infraestructura**
+- Docker + Docker Compose
+- Nginx (reverse proxy + SPA serving)
 
-## Expanding the ESLint configuration
+## Desarrollo local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+
+```bash
+npm install
+npm run dev
+```
+
+### Backend
+
+```bash
+cd ai-backend
+# Configurar ai-backend/.env con MODEL_NAME, LMSTUDIO_URL y PORT
+node index.js
+```
+
+### Full stack con Docker
+
+```bash
+docker compose up --build
+```
+
+La app queda disponible en `http://localhost:8085`.
+
+## Variables de entorno
+
+Crear `ai-backend/.env`:
+
+```env
+MODEL_NAME=liquid/lfm2-1.2b
+LMSTUDIO_URL=http://172.19.0.1:1234/v1/chat/completions
+PORT=4000
+```
+
+> `LMSTUDIO_URL` apunta al host desde dentro del contenedor Docker. Ajustar según el entorno.
