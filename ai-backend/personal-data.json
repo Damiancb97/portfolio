@@ -1,20 +1,70 @@
 {
   "nombre": "Damián Costa Blanco",
-  "tecnologias": [
-    "React",
-    "Vite",
-    "TailwindCSS",
-    "Node.js",
-    "Docker",
-    "Linux"
+  "ubicacion": "A Coruña, España",
+  "email": "damiancb97@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/damiancb",
+  "github": "https://github.com/Damiancb97",
+  "web": "https://damiancb.com",
+
+  "rol_actual": "Backend Developer",
+
+  "experiencia_laboral": [
+    {
+      "empresa": "Lapisoft Projects",
+      "ubicacion": "A Coruña, España",
+      "rol": "Backend Developer",
+      "periodo": "Abril 2025 – actualidad",
+      "detalle": "Comenzó en abril de 2025 como prácticas de formación. En junio de 2025 pasó a contrato de internship, donde continúa actualmente. Trabaja en desarrollo backend con Java Spring Boot, modelos relacionales con bases de datos SQL y arquitectura por capas (arquitectura en cebolla / onion architecture)."
+    }
   ],
-  "experiencia": "Desarrollador software (principalmente java con SpringBoot) con interés en IA y despliegues propios",
-  "sobre_mi": "Soy una persona autodidacta, apasionada por construir proyectos reales...",
+
+  "formacion": [
+    {
+      "titulo": "Técnico Superior en Desarrollo de Aplicaciones Web (DAW)",
+      "centro": "Afundación",
+      "ubicacion": "A Coruña, España",
+      "estado": "Finalizado"
+    }
+  ],
+
+  "idiomas": [
+    { "idioma": "Español", "nivel": "Nativo" },
+    { "idioma": "Gallego", "nivel": "Nativo" },
+    { "idioma": "Inglés", "nivel": "B1 – Fluido para el día a día, sin certificado oficial" }
+  ],
+
+  "tecnologias": {
+    "backend": ["Java", "Spring Boot", "Python", "Django", "Node.js", "Express"],
+    "frontend": ["React", "Vite", "Tailwind CSS", "JavaScript", "Next.js"],
+    "bases_de_datos": ["PostgreSQL", "SQL", "Modelos relacionales"],
+    "devops_y_herramientas": ["Docker", "Nginx", "Git", "GitHub"],
+    "aprendiendo": ["GitHub Actions", "CI/CD", "Pipelines de automatización"]
+  },
+
   "proyectos_destacados": [
-    "Portfolio personal con IA",
-    "Aplicación X",
-    "Herramienta Y",
-    "Walkly",
-    "Coinly"
-  ]
+    {
+      "nombre": "Portfolio Personal",
+      "url": "https://damiancb.com",
+      "github": "https://github.com/damiancb97/portfolio",
+      "descripcion": "Sitio web de portfolio personal con chat de IA integrado. El asistente responde preguntas sobre su experiencia usando un modelo local a través de LM Studio.",
+      "tecnologias": ["React 19", "Vite 7", "Tailwind CSS 4", "Node.js", "Express 5", "Docker", "Nginx"]
+    },
+    {
+      "nombre": "Algodom con Amor",
+      "url": "https://algodomconamor.damiancb.com",
+      "github": "https://github.com/damiancb97/algodomconamor",
+      "descripcion": "Tienda web para la venta de ropa tejida a mano. Gestión de contenido desde Sanity Studio y frontend en Next.js.",
+      "tecnologias": ["Next.js 16", "Turbopack", "Sanity Studio", "React", "Tailwind CSS", "Docker", "Nginx"]
+    }
+  ],
+
+  "busqueda_laboral": {
+    "en_busqueda_activa": false,
+    "abierto_a_oportunidades": true,
+    "preferencia": "Desarrollo backend. No cierra puertas a nuevas experiencias si se presenta una buena oportunidad."
+  },
+
+  "sobre_mi": "Soy un desarrollador backend autodidacta y apasionado por construir aplicaciones bien estructuradas y mantenibles. Actualmente trabajo en Lapisoft Projects con Java Spring Boot. Me interesa el desarrollo personal, el deporte y seguir aprendiendo continuamente. Soy proactivo, me adapto rápido a nuevas tecnologías y disfruto enfrentando retos técnicos.",
+
+  "intereses_personales": ["Tecnología", "Desarrollo personal", "Deporte", "Aprendizaje continuo"]
 }
