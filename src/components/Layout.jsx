@@ -6,6 +6,7 @@ import NavLinks from './NavLinks';
 import { useTheme } from '../context/ThemeContext';
 import { useLang } from '../context/LangContext';
 import { t } from '../translations';
+import avatar from '../assets/notfound.svg';
 
 function SunIcon() {
   return (
@@ -43,6 +44,27 @@ function CloseIcon() {
   )
 }
 
+function FlagES() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" className="w-6 h-4 rounded-sm">
+      <rect width="20" height="14" fill="#c60b1e"/>
+      <rect y="3.5" width="20" height="7" fill="#ffc400"/>
+    </svg>
+  )
+}
+
+function FlagGB() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" className="w-6 h-4 rounded-sm">
+      <rect width="60" height="30" fill="#012169"/>
+      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
+      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="4"/>
+      <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10"/>
+      <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6"/>
+    </svg>
+  )
+}
+
 const base = 'py-2 px-4 rounded-md transition bg-indigo-500 text-white hover:bg-indigo-600 text-center';
 const active = 'py-2 px-4 bg-indigo-600 text-yellow-300 rounded-md text-center';
 
@@ -54,15 +76,24 @@ export default function Layout() {
 
   const controls = (
     <div className="flex items-center gap-2 shrink-0">
-      <select
-        value={lang}
-        onChange={(e) => changeLang(e.target.value)}
-        aria-label="Seleccionar idioma"
-        className="text-sm rounded-full px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border-none outline-none cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200 appearance-none"
-      >
-        <option value="es">🇪🇸 ES</option>
-        <option value="en">🇬🇧 EN</option>
-      </select>
+      <div className="flex items-center gap-1 rounded-full bg-gray-100 dark:bg-gray-700 px-1 py-1">
+        <button
+          onClick={() => changeLang('es')}
+          aria-label="Español"
+          title="Español"
+          className={`px-2 py-1 rounded-full transition-colors duration-200 ${lang === 'es' ? 'bg-white dark:bg-gray-500 shadow-sm' : 'hover:bg-gray-200 dark:hover:bg-gray-600'}`}
+        >
+          <FlagES />
+        </button>
+        <button
+          onClick={() => changeLang('en')}
+          aria-label="English"
+          title="English"
+          className={`px-2 py-1 rounded-full transition-colors duration-200 ${lang === 'en' ? 'bg-white dark:bg-gray-500 shadow-sm' : 'hover:bg-gray-200 dark:hover:bg-gray-600'}`}
+        >
+          <FlagGB />
+        </button>
+      </div>
       <button
         onClick={toggle}
         aria-label="Alternar tema"
@@ -78,7 +109,10 @@ export default function Layout() {
 
       {/* ── Mobile top bar ── */}
       <header className="md:hidden sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-md px-4 py-3 flex items-center justify-between transition-colors duration-200">
-        <span className="font-semibold text-gray-900 dark:text-white">Damián CB</span>
+        <div className="flex items-center gap-2">
+          <img src={avatar} alt="Avatar" className="w-8 h-8 rounded-full object-cover border-2 border-indigo-500" />
+          <span className="font-semibold text-gray-900 dark:text-white">Damián CB</span>
+        </div>
         <div className="flex items-center gap-2">
           {controls}
           <button

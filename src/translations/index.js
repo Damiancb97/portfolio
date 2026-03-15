@@ -64,18 +64,26 @@ export const t = {
           description: 'Sitio web de portfolio personal con chat de IA integrado. El asistente responde preguntas sobre mi experiencia y habilidades usando un modelo de lenguaje local a través de LM Studio.',
         },
         {
-          name: 'Algodom con Amor',
+          name: 'Algodón con Amor',
           description: 'Tienda web para la venta de ropa tejida a mano. Gestión de contenido (productos, categorías e imágenes) desde Sanity Studio, con un frontend en Next.js que consume la API de Sanity.',
+        },
+        {
+          name: 'Timed',
+          description: 'Aplicación web de gestión de hermandad de World of Warcraft. Integra datos de Warcraft Logs (GraphQL + OAuth2) y Raider.io (REST) para hacer seguimiento del progreso de raid, first kills, estadísticas de jugadores, roster y leaderboards.',
+        },
+        {
+          name: 'Walkly',
+          description: 'App de seguimiento de actividad física multiplataforma construida con Expo (React Native). Registra pasos en tiempo real mediante sensores del dispositivo, calcula calorías y distancia recorrida, y sincroniza los datos con Firebase Firestore.',
         },
       ],
     },
     skills: {
       title: 'Habilidades',
       groups: [
-        { category: 'Backend', skills: ['Java', 'Spring Boot', 'Python', 'Django', 'Node.js', 'Express'] },
-        { category: 'Frontend', skills: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'] },
-        { category: 'Base de datos', skills: ['PostgreSQL', 'SQL', 'Modelos relacionales'] },
-        { category: 'DevOps & Herramientas', skills: ['Docker', 'Nginx', 'Git', 'GitHub'] },
+        { category: 'Backend', skills: ['Java', 'Spring Boot', 'Python', 'Django', 'Node.js', 'Express', 'GraphQL'] },
+        { category: 'Frontend', skills: ['React', 'React Native', 'Expo', 'Vite', 'Tailwind CSS', 'JavaScript', 'TypeScript'] },
+        { category: 'Base de datos', skills: ['PostgreSQL', 'SQL', 'Modelos relacionales', 'Firebase'] },
+        { category: 'DevOps & Herramientas', skills: ['Docker', 'Nginx', 'Git', 'GitHub', 'Cloudflare Tunnel'] },
       ],
       softTitle: 'Soft Skills',
       soft: [
@@ -156,18 +164,26 @@ export const t = {
           description: 'Personal portfolio website with integrated AI chat. The assistant answers questions about my experience and skills using a local language model through LM Studio.',
         },
         {
-          name: 'Algodom con Amor',
+          name: 'Algodón con Amor',
           description: 'E-commerce website for selling handmade knitted clothing. Content managed (products, categories and images) via Sanity Studio, with a Next.js frontend consuming the Sanity API.',
+        },
+        {
+          name: 'Timed',
+          description: 'World of Warcraft guild management web app. Integrates Warcraft Logs (GraphQL + OAuth2) and Raider.io (REST) data to track raid progress, first kills, player stats, roster and leaderboards.',
+        },
+        {
+          name: 'Walkly',
+          description: 'Cross-platform fitness tracking app built with Expo (React Native). Tracks daily steps in real time via device sensors, calculates calories burned and distance walked, and syncs data to Firebase Firestore.',
         },
       ],
     },
     skills: {
       title: 'Skills',
       groups: [
-        { category: 'Backend', skills: ['Java', 'Spring Boot', 'Python', 'Django', 'Node.js', 'Express'] },
-        { category: 'Frontend', skills: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'] },
-        { category: 'Database', skills: ['PostgreSQL', 'SQL', 'Relational models'] },
-        { category: 'DevOps & Tools', skills: ['Docker', 'Nginx', 'Git', 'GitHub'] },
+        { category: 'Backend', skills: ['Java', 'Spring Boot', 'Python', 'Django', 'Node.js', 'Express', 'GraphQL'] },
+        { category: 'Frontend', skills: ['React', 'React Native', 'Expo', 'Vite', 'Tailwind CSS', 'JavaScript', 'TypeScript'] },
+        { category: 'Database', skills: ['PostgreSQL', 'SQL', 'Relational models', 'Firebase'] },
+        { category: 'DevOps & Tools', skills: ['Docker', 'Nginx', 'Git', 'GitHub', 'Cloudflare Tunnel'] },
       ],
       softTitle: 'Soft Skills',
       soft: [
