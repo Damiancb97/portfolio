@@ -58,6 +58,7 @@ export const t = {
       title: 'Proyectos',
       live: 'Sitio en vivo ↗',
       github: 'GitHub ↗',
+      download: 'Descargar aquí ↓',
       items: [
         {
           name: 'Portfolio Personal',
@@ -158,6 +159,7 @@ export const t = {
       title: 'Projects',
       live: 'Live site ↗',
       github: 'GitHub ↗',
+      download: 'Download here ↓',
       items: [
         {
           name: 'Personal Portfolio',

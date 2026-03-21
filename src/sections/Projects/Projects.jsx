@@ -53,7 +53,7 @@ const projectsMeta = [
     icon: <IconHeart />,
     iconColor: 'text-pink-500',
     techs: ["Next.js 16", "Turbopack", "Sanity Studio", "React", "Tailwind CSS", "Docker", "Nginx"],
-    live: "https://algodomconamor.damiancb.com",
+    live: "https://algodonconamor.es",
     github: "https://github.com/damiancb97/algodomconamor",
   },
   {
@@ -68,6 +68,7 @@ const projectsMeta = [
     iconColor: 'text-green-500',
     techs: ["Expo", "React Native", "TypeScript", "Firebase", "Firestore"],
     github: "https://github.com/damiancb97/walkly",
+    download: "https://expo.dev/accounts/damiancb97/projects/walkly/builds/7efe2a96-6669-49e9-b1be-bdf8f3d60fcd",
   },
 ]
 
@@ -100,6 +101,11 @@ function Projects() {
                 {project.live && (
                   <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
                     {tr.live}
+                  </a>
+                )}
+                {project.download && (
+                  <a href={project.download} target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline text-sm">
+                    {tr.download}
                   </a>
                 )}
                 <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline text-sm">
