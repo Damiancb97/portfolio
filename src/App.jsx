@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import Hero from './sections/Hero/Hero';
 import About from './sections/About/About';
 import Projects from './sections/Projects/Projects';
+import ProjectDetail from './sections/ProjectDetail/ProjectDetail';
 import Skills from './sections/Skills/Skills';
 import Contact from './sections/Contact/Contact';
 
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/" element={<Hero />} />
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
         <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
