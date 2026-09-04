@@ -54,6 +54,18 @@ const projectsMeta = [
     github: "https://github.com/damiancb97/walkly",
     download: "https://expo.dev/accounts/damiancb97/projects/walkly/builds/7efe2a96-6669-49e9-b1be-bdf8f3d60fcd",
   },
+  // Coinly y sotrixOS son privados: repositorio cerrado y accesibles solo en LAN/tailnet,
+  // así que no llevan `live`, `github` ni `download` — la tarjeta oculta los tres enlaces.
+  {
+    icon: <LogoImg src="/projects/icons/coinly.svg" alt="Coinly logo" />,
+    iconColor: '',
+    techs: ["Java 21", "Spring Boot 3.5", "Spring Cloud Gateway", "Eureka", "Keycloak 26", "PostgreSQL", "React 18", "Docker"],
+  },
+  {
+    icon: <LogoImg src="/projects/icons/sotrixos.png" alt="sotrixOS logo" />,
+    iconColor: '',
+    techs: ["FastAPI", "Python", "React", "TypeScript", "Home Assistant", "MQTT", "LM Studio", "Docker"],
+  },
 ]
 
 function Projects() {
@@ -126,15 +138,17 @@ function Projects() {
                     {tr.download}
                   </a>
                 )}
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
-                >
-                  {tr.github}
-                </a>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                  >
+                    {tr.github}
+                  </a>
+                )}
                 <span className="ml-auto text-sm font-semibold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-1 transition-transform">
                   {detailsLabel}
                 </span>

@@ -22,6 +22,9 @@ export const t = {
       placeholder: 'Escribe tu pregunta...',
       send: 'Enviar',
       chatError: 'Error: no pude conectar con la IA.',
+      chatLimitReached: 'Has alcanzado el límite de preguntas por ahora. Vuelve a intentarlo más tarde.',
+      chatBusy: 'La IA está atendiendo muchas peticiones ahora mismo. Inténtalo de nuevo en unos segundos.',
+      chatRemaining: 'Preguntas restantes: {n}',
     },
     about: {
       title: 'Sobre mí',
@@ -76,6 +79,14 @@ export const t = {
           name: 'Walkly',
           description: 'App de seguimiento de actividad física multiplataforma construida con Expo (React Native). Registra pasos en tiempo real mediante sensores del dispositivo, calcula calorías y distancia recorrida, y sincroniza los datos con Firebase Firestore.',
         },
+        {
+          name: 'Coinly',
+          description: 'Gestor de finanzas personales construido como arquitectura de microservicios con Spring Boot: descubrimiento con Eureka, un Spring Cloud Gateway como única puerta de entrada y una base de datos PostgreSQL por servicio. La identidad la gestiona Keycloak vía OIDC, y el frontend es una SPA en React con TypeScript.',
+        },
+        {
+          name: 'sotrixOS',
+          description: 'Panel domótico autoalojado sobre Home Assistant, con backend en FastAPI y dashboard propio en React. Controla equipos, enchufes y consolas mediante MQTT, Wake-on-LAN y SSH, e incluye un asistente en lenguaje natural con IA local (LM Studio), voz local con Whisper y Piper, y un bot de Telegram.',
+        },
       ],
     },
     skills: {
@@ -123,6 +134,9 @@ export const t = {
       placeholder: 'Type your question...',
       send: 'Send',
       chatError: 'Error: could not connect to the AI.',
+      chatLimitReached: 'You have reached the question limit for now. Please try again later.',
+      chatBusy: 'The AI is handling many requests right now. Please try again in a few seconds.',
+      chatRemaining: 'Questions left: {n}',
     },
     about: {
       title: 'About Me',
@@ -176,6 +190,14 @@ export const t = {
         {
           name: 'Walkly',
           description: 'Cross-platform fitness tracking app built with Expo (React Native). Tracks daily steps in real time via device sensors, calculates calories burned and distance walked, and syncs data to Firebase Firestore.',
+        },
+        {
+          name: 'Coinly',
+          description: 'Personal finance manager built as a Spring Boot microservice architecture: Eureka service discovery, a Spring Cloud Gateway as the single entry point, and one PostgreSQL database per service. Identity is handled by Keycloak over OIDC, and the frontend is a React + TypeScript SPA.',
+        },
+        {
+          name: 'sotrixOS',
+          description: 'Self-hosted home automation panel on top of Home Assistant, with a FastAPI backend and a custom React dashboard. It controls machines, smart plugs and consoles over MQTT, Wake-on-LAN and SSH, and ships a natural-language assistant backed by a local LLM (LM Studio), local voice via Whisper and Piper, and a Telegram bot.',
         },
       ],
     },
