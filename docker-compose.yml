@@ -1,16 +1,13 @@
-version: "3.8"
-
 services:
   api:
     build: ./ai-backend
     container_name: portfolio_api
     restart: unless-stopped
+    # Red del host para alcanzar LM Studio en 127.0.0.1:1234 (escucha solo en
+    # loopback, igual que lo consume Coinly). El api escucha en el :4000 del host.
+    network_mode: host
     env_file:
       - ./ai-backend/.env
-    expose:
-      - "4000"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   web:
     build: .
@@ -18,5 +15,7 @@ services:
     restart: unless-stopped
     depends_on:
       - api
-    ports:
-      - "8085:80"
+    # También en red del host: así nginx llega al api por 127.0.0.1:4000 sin
+    # cruzar el bridge Docker (el firewall del host bloquea bridge -> host).
+    # nginx escucha en :8085, que es a donde ya proxya el nginx del host.
+    network_mode: host

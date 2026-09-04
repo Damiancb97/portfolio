@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLang } from '../../context/LangContext';
 import { t } from '../../translations';
 
@@ -13,6 +13,14 @@ function Hero() {
   })
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [remaining, setRemaining] = useState(null); // preguntas restantes (null = desconocido)
+
+  // Auto-scroll al último mensaje (sobre el propio contenedor, no la página)
+  const scrollRef = useRef(null);
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+  }, [messages]);
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -25,12 +33,26 @@ function Hero() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include', // envía/recibe la cookie de identidad (cid)
         body: JSON.stringify({ message: input })
       });
 
+      // El backend informa de las preguntas restantes por cabecera
+      const rem = res.headers.get('RateLimit-Remaining');
+      if (rem !== null) setRemaining(Number(rem));
+
+      if (!res.ok) {
+        const text =
+          res.status === 429 ? tr.chatLimitReached : // límite por cliente
+          res.status === 503 ? tr.chatBusy :          // IA ocupada (cola llena)
+          tr.chatError;
+        setMessages(prev => [...prev, { from: 'IA', text }]);
+        if (res.status === 429) setRemaining(0);
+        return;
+      }
+
       const data = await res.json();
-      const aiMsg = { from: 'IA', text: data.reply || data };
-      setMessages(prev => [...prev, aiMsg]);
+      setMessages(prev => [...prev, { from: 'IA', text: data.reply || tr.chatError }]);
     } catch (err) {
       console.error(err);
       setMessages(prev => [...prev, { from: 'IA', text: tr.chatError }]);
@@ -82,7 +104,11 @@ function Hero() {
 
         {/* Chat */}
         <div className="mt-10 w-full max-w-2xl mx-auto">
-          <div className="space-y-3">
+          <div
+            ref={scrollRef}
+            aria-live="polite"
+            className="space-y-3 max-h-[55vh] overflow-y-auto pr-1"
+          >
             {messages.map((msg, i) => (
               <div key={i} className={`flex gap-2 ${msg.from === 'Tú' ? 'justify-end' : 'justify-start'}`}>
                 <div
@@ -113,16 +139,27 @@ function Hero() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={tr.placeholder}
-              disabled={loading}
+              disabled={loading || remaining === 0}
             />
             <button
               onClick={sendMessage}
               className="rounded-lg bg-blue-600 px-4 py-2 text-white font-semibold disabled:opacity-60 hover:bg-blue-700 transition-colors"
-              disabled={loading}
+              disabled={loading || remaining === 0}
             >
               {loading ? '...' : tr.send}
             </button>
           </div>
+
+          {remaining !== null && remaining > 0 && (
+            <p className="mt-2 text-xs text-gray-400 dark:text-gray-500">
+              {tr.chatRemaining.replace('{n}', remaining)}
+            </p>
+          )}
+          {remaining === 0 && (
+            <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">
+              {tr.chatLimitReached}
+            </p>
+          )}
         </div>
       </div>
     </section>
